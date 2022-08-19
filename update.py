@@ -40,5 +40,20 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
+    
+    
+req_url = f"https://api.dler.io/sub?target=quanx&url={sub_url}&list=true"
+ret = requests.get(req_url)
+
+req_text = ret.text
+
+if "password" in req_text:
+    open("quanx.yml", "w").write(req_text)
+    q = Auth(access_key, secret_key)
+    bucket_name = 'blog_cdn'
+    key = 'quanx.yml'
+    token = q.upload_token(bucket_name, key, 3600)
+    localfile = './quanx.yml'
+    ret, info = put_file(token, key, localfile, version='v2') 
 
 
