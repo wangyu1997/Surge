@@ -12,7 +12,7 @@ if os.path.exists("tmp"):
 else:
     os.mknod("tmp")
 
-req_url = f"https://api.dler.io/sub?target=clash&url={sub_url}&list=true"
+req_url = f"http://h4.noway.top:25500/sub?target=clash&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
@@ -27,7 +27,7 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
     
     
-req_url = f"https://api.dler.io/sub?target=surge&url={sub_url}&list=true"
+req_url = f"http://h4.noway.top:25500/sub?target=surge&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
@@ -42,7 +42,7 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
     
     
-req_url = f"https://api.dler.io/sub?target=quanx&url={sub_url}&list=true"
+req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
