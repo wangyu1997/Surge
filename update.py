@@ -26,7 +26,6 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './clash.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
-    print(ret)
 
     
 req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
@@ -42,7 +41,6 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './quanx.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
-    print(ret)
 
     
 req_url = clash_url
@@ -56,17 +54,14 @@ for node in node_info.split('\n')[1:]:
     if node.startswith('['):
         node_list.append(node)
 req_text = '\n'.join(node_list)
-print(req_text)
 
 if "password" in req_text:
     open("surge.yml", "w").write(req_text)
-    print('1111')
     q = Auth(access_key, secret_key)
     bucket_name = 'blog_cdn'
     key = 'surge.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
-    print(ret)
     
 
