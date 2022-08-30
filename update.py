@@ -25,6 +25,7 @@ if "password" in req_text:
     key = 'clash.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './clash.yml'
+    ret, info = bucket.delete(bucket_name, key)
     ret, info = put_file(token, key, localfile, version='v2') 
 
     
@@ -40,6 +41,7 @@ if "password" in req_text:
     key = 'quanx.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './quanx.yml'
+    ret, info = bucket.delete(bucket_name, key)
     ret, info = put_file(token, key, localfile, version='v2') 
 
     
@@ -62,6 +64,7 @@ if "password" in req_text:
     key = 'surge.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
+    ret, info = bucket.delete(bucket_name, key)
     ret, info = put_file(token, key, localfile, version='v2') 
     
 
