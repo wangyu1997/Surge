@@ -42,8 +42,9 @@ jobs:
         ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         SUB_URL: ${{ secrets.SUB_URL }}
-        CLASH_URL: ${{ secrets.CLASH_URL }}
-
+        SURGE_URL: ${{ secrets.SURGE_URL }}
+        CDN_URL: ${{ secrets.CDN_URL }}
+        CONVERT_URL: ${{ secrets.CONVERT_URL }}
         
 #     - name: Commit files
 #       id: commit
