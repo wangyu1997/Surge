@@ -44,6 +44,7 @@ if "password" in req_text:
 
     
 req_url = f"http://h4.noway.top:25500/sub?target=surge&url={clash_url}&list=true"
+print(req_url)
 ret = requests.get(req_url)
 
 req_text = ret.text
