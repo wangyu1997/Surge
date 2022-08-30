@@ -46,13 +46,13 @@ if "password" in req_text:
 
     
 req_url = clash_url
-print(req_url)
 ret = requests.get(req_url)
 
 req_text = ret.text
 
 if "password" in req_text:
     open("surge.yml", "w").write(req_text)
+    print('1111')
     q = Auth(access_key, secret_key)
     bucket_name = 'blog_cdn'
     key = 'surge.yml'
