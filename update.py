@@ -17,7 +17,6 @@ req_url = f"http://h4.noway.top:25500/sub?target=clash&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
-print(req_text)
 
 if "password" in req_text:
     open("clash.yml", "w").write(req_text)
@@ -27,13 +26,13 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './clash.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
-    
+    ptint(ret)
+
     
 req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
-print(req_text)
 
 if "password" in req_text:
     open("quanx.yml", "w").write(req_text)
@@ -43,6 +42,7 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './quanx.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
+    ptint(ret)
 
     
 req_url = clash_url
@@ -50,7 +50,6 @@ print(req_url)
 ret = requests.get(req_url)
 
 req_text = ret.text
-print(req_text)
 
 if "password" in req_text:
     open("surge.yml", "w").write(req_text)
@@ -60,5 +59,6 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
+    ptint(ret)
     
 
