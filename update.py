@@ -43,7 +43,7 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
 
     
-req_url = f"http://h4.noway.top:25500/sub?target=surge&url={clash_url}&list=true"
+req_url = clash_url
 print(req_url)
 ret = requests.get(req_url)
 
