@@ -49,6 +49,13 @@ req_url = clash_url
 ret = requests.get(req_url)
 
 req_text = ret.text
+
+node_info = req_text[req_text.find('[Proxy]'):req_text.find('[Proxy Group]')].strip()
+node_list = []
+for node in node_info.split('\n')[1:]:
+    if node.startswith('['):
+        node_list.append(node)
+req_text = '\n'.join(node_list)
 print(req_text)
 
 if "password" in req_text:
