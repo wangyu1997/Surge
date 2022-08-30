@@ -5,6 +5,7 @@ import qiniu.config
 
 access_key = os.environ["ACCESS_KEY"]
 secret_key = os.environ["SECRET_KEY"]
+clash_url = os.environ["CLASH_URL"]
 sub_url = os.environ["SUB_URL"]
 
 if os.path.exists("tmp"):
@@ -27,21 +28,6 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
     
     
-req_url = f"http://h4.noway.top:25500/sub?target=surge&url={sub_url}&list=true"
-ret = requests.get(req_url)
-
-req_text = ret.text
-
-if "password" in req_text:
-    open("surge.yml", "w").write(req_text)
-    q = Auth(access_key, secret_key)
-    bucket_name = 'blog_cdn'
-    key = 'surge.yml'
-    token = q.upload_token(bucket_name, key, 3600)
-    localfile = './surge.yml'
-    ret, info = put_file(token, key, localfile, version='v2') 
-    
-    
 req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
@@ -56,4 +42,19 @@ if "password" in req_text:
     localfile = './quanx.yml'
     ret, info = put_file(token, key, localfile, version='v2') 
 
+    
+req_url = f"http://h4.noway.top:25500/sub?target=surge&url={clash_url}&list=true"
+ret = requests.get(req_url)
+
+req_text = ret.text
+
+if "password" in req_text:
+    open("surge.yml", "w").write(req_text)
+    q = Auth(access_key, secret_key)
+    bucket_name = 'blog_cdn'
+    key = 'surge.yml'
+    token = q.upload_token(bucket_name, key, 3600)
+    localfile = './surge.yml'
+    ret, info = put_file(token, key, localfile, version='v2') 
+    
 
