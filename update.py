@@ -27,7 +27,7 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './clash.yml'
     ret, info = bucket.delete(bucket_name, key)
-#     ret, info = put_file(token, key, localfile, version='v2') 
+    ret, info = put_file(token, key, localfile, version='v2') 
 
     
 req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
@@ -44,7 +44,7 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './quanx.yml'
     ret, info = bucket.delete(bucket_name, key)
-#     ret, info = put_file(token, key, localfile, version='v2') 
+    ret, info = put_file(token, key, localfile, version='v2') 
 
     
 req_url = clash_url
@@ -68,6 +68,6 @@ if "password" in req_text:
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
     ret, info = bucket.delete(bucket_name, key)
-#     ret, info = put_file(token, key, localfile, version='v2') 
+    ret, info = put_file(token, key, localfile, version='v2') 
     
 
