@@ -17,6 +17,7 @@ req_url = f"http://h4.noway.top:25500/sub?target=clash&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
+print(req_text)
 
 if "password" in req_text:
     open("clash.yml", "w").write(req_text)
@@ -32,6 +33,7 @@ req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
+print(req_text)
 
 if "password" in req_text:
     open("quanx.yml", "w").write(req_text)
