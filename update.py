@@ -48,6 +48,7 @@ print(req_url)
 ret = requests.get(req_url)
 
 req_text = ret.text
+print(req_text)
 
 if "password" in req_text:
     open("surge.yml", "w").write(req_text)
