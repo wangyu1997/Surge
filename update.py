@@ -1,19 +1,21 @@
 import requests
 import os
-from qiniu import Auth, put_file, etag,BucketManager
+from qiniu import Auth, put_file, etag,BucketManager,CdnManager
 import qiniu.config
 
 access_key = os.environ["ACCESS_KEY"]
 secret_key = os.environ["SECRET_KEY"]
-clash_url = os.environ["CLASH_URL"]
 sub_url = os.environ["SUB_URL"]
+surge_url = os.environ["SURGE_URL"]
+cdn_url = os.environ["CDN_URL"]
+convert_url = os.environ["CONVERT_URL"]
 
 if os.path.exists("tmp"):
     os.remove("tmp")
 else:
     os.mknod("tmp")
 
-req_url = f"http://h4.noway.top:25500/sub?target=clash&url={sub_url}&list=true"
+req_url = f"{convert_url}?target=clash&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
@@ -30,7 +32,7 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
 
     
-req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
+req_url = f"{convert_url}?target=quanx&url={sub_url}&list=true"
 ret = requests.get(req_url)
 
 req_text = ret.text
@@ -47,7 +49,7 @@ if "password" in req_text:
     ret, info = put_file(token, key, localfile, version='v2') 
 
     
-req_url = clash_url
+req_url = surge_url
 ret = requests.get(req_url)
 
 req_text = ret.text
@@ -70,4 +72,13 @@ if "password" in req_text:
     ret, info = bucket.delete(bucket_name, key)
     ret, info = put_file(token, key, localfile, version='v2') 
     
+q = Auth(access_key, secret_key)
+cdn_manager = CdnManager(q)
+urls = [
+    f'{cdn_url}/surge.yml',
+    f'{cdn_url}/quanx.yml',
+    f'{cdn_url}/clash.yml'
 
+]
+refresh_url_result = cdn_manager.refresh_urls(urls)
+print(refresh_url_result)
