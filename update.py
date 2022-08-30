@@ -1,6 +1,6 @@
 import requests
 import os
-from qiniu import Auth, put_file, etag
+from qiniu import Auth, put_file, etag,BucketManager
 import qiniu.config
 
 access_key = os.environ["ACCESS_KEY"]
@@ -21,12 +21,13 @@ req_text = ret.text
 if "password" in req_text:
     open("clash.yml", "w").write(req_text)
     q = Auth(access_key, secret_key)
+    bucket = BucketManager(q)
     bucket_name = 'blog_cdn'
     key = 'clash.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './clash.yml'
     ret, info = bucket.delete(bucket_name, key)
-    ret, info = put_file(token, key, localfile, version='v2') 
+#     ret, info = put_file(token, key, localfile, version='v2') 
 
     
 req_url = f"http://h4.noway.top:25500/sub?target=quanx&url={sub_url}&list=true"
@@ -37,12 +38,13 @@ req_text = ret.text
 if "password" in req_text:
     open("quanx.yml", "w").write(req_text)
     q = Auth(access_key, secret_key)
+    bucket = BucketManager(q)
     bucket_name = 'blog_cdn'
     key = 'quanx.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './quanx.yml'
     ret, info = bucket.delete(bucket_name, key)
-    ret, info = put_file(token, key, localfile, version='v2') 
+#     ret, info = put_file(token, key, localfile, version='v2') 
 
     
 req_url = clash_url
@@ -60,11 +62,12 @@ req_text = '\n'.join(node_list)
 if "password" in req_text:
     open("surge.yml", "w").write(req_text)
     q = Auth(access_key, secret_key)
+    bucket = BucketManager(q)
     bucket_name = 'blog_cdn'
     key = 'surge.yml'
     token = q.upload_token(bucket_name, key, 3600)
     localfile = './surge.yml'
     ret, info = bucket.delete(bucket_name, key)
-    ret, info = put_file(token, key, localfile, version='v2') 
+#     ret, info = put_file(token, key, localfile, version='v2') 
     
 
