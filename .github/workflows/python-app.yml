@@ -13,6 +13,8 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'
+  repository_dispatch:
+    types: [ update ]
   push:
     branches: [ main ]
   pull_request:
